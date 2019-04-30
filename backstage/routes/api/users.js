@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const User = require("../../models/User");
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 router.get("/test", (req, res) => {
     User.find({}, function (err, doc) {
         if (err) {
@@ -70,7 +71,7 @@ router.post("/login", (req, res) => {
                             if (err) throw err;
                             res.json({
                                 success: true,
-                                token
+                                token: "Bearer " + token
                             })
                         })
                         // res.json({
@@ -87,15 +88,13 @@ router.post("/login", (req, res) => {
 
         })
 })
-router.get("/curretn", (req, res) => {
-    User.find({}, function (err, doc) {
-        if (err) {
-            console.log(err.message)
-        } else {
-            res.json({
-                msg: doc
-            })
-        }
+router.get("/curretn", passport.authenticate("jwt", {
+    session: false
+}), (req, res) => {
+    res.json({
+        name: req.user.name,
+        tel: req.user.tel,
+        id: req.user.id
     })
 })
 module.exports = router;
