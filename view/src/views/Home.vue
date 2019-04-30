@@ -2,9 +2,9 @@
   <div class="home">
     <div class="banner">
       <el-tabs v-model="activeName" class="w500" @tab-click="handleClick">
-          <el-tab-pane label="用户管理"  name="first"></el-tab-pane>
-          <el-tab-pane label="配置管理" name="second"></el-tab-pane>
-          <el-tab-pane label="角色管理" name="third"></el-tab-pane>
+          <el-tab-pane label="二手房"  name="first"></el-tab-pane>
+          <el-tab-pane label="新房" name="second"></el-tab-pane>
+          <el-tab-pane label="租房" name="third"></el-tab-pane>
         <div>
           <el-input
             placeholder="请输入内容"
